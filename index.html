@@ -7,53 +7,132 @@
     <link rel="stylesheet" href="styles/output.css" />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body id="body" class="min-h-screen bg-white text-gray-900">
-    <header
-      id="header"
-      class="bg-gradient-to-r from-sky-500 to-indigo-600 text-white"
-    >
+  <body id="body" class="min-h-screen text-white">
+    <header id="header" class="text-white">
       <div
-        class="container mx-auto px-6 py-6 flex items-center justify-between"
+        class="container mx-auto px-2 py-6 flex items-center justify-between"
       >
-        <a href="#header" class="text-xl font-bold">Francisco Flores</a>
-        <nav aria-label="Menú principal">
+        <a href="#header" class="text-xl font-bold">Francisco.Dev</a>
+
+        <!-- Botón móvil -->
+        <button
+          id="mobile-menu-button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+          aria-label="Abrir menú"
+        >
+          <!-- Icono hamburguesa -->
+          <svg
+            id="icon-open"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Navegación de escritorio -->
+        <nav aria-label="Menú principal" class="hidden md:block ">
           <ul class="flex gap-4">
             <li><a href="#projects" class="hover:underline">Proyectos</a></li>
             <li><a href="#about" class="hover:underline">Sobre mí</a></li>
             <li><a href="#contact" class="hover:underline">Contacto</a></li>
           </ul>
         </nav>
-      </div>
-      <div class="container mx-auto px-6 py-12 text-center">
-        <h1 class="text-3xl md:text-5xl font-extrabold">Frontend Developer</h1>
-        <p class="mt-4 text-lg md:text-xl">
-          Hola, soy Francisco. Hago interfaces accesibles y rápidas.
-        </p>
-        <a
-          href="#projects"
-          class="inline-block mt-6 px-5 py-3 bg-white text-indigo-700 rounded-lg font-semibold"
-          >Ver proyectos</a
-        >
+        <!-- Menú móvil desplegable -->
+    </div>
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden -mx-6 px-6 pb-6 text-center text-shadow-2xs text-shadow-white"
+      aria-hidden="true"
+    >
+      <ul class="space-y-3">
+        <li>
+          <a href="#projects" class="block text-white ho py-2">Proyectos</a>
+        </li>
+        <li><a href="#about" class="block text-white py-2">Sobre mí</a></li>
+        <li><a href="#contact" class="block text-white py-2">Contacto</a></li>
+      </ul>
+    </div>
+    <!--texto del header-->
+      <div class="container-head mx-auto px-6 py-7 text-left md:flex md:flex-row-reverse justify-evenly items-center">
+        <div id="Avatar" class=" w-1/2 md:w-1/5 border mask-b-from-90% shadow shadow-amber-100 rounded-full md:border-none md:rounded-none">
+
+            <picture >
+                <source media="(min-width: 768px)" srcset="assets/img/desktop-avatar.png">
+                <img class="max-w-full w-full h-auto object-cover mask-b-from-90%" src="assets/img/mobile-avatar.png" alt="Avatar de Francisco Flores" loading="lazy" decoding="async">
+            </picture>
+        </div>
+<div id="header-info">
+
+    <div id="text-head" class="mt-6">
+        
+        <span class="text-gray-300"> Hola soy,</span>    
+        <h1 class="text-3xl md:text-5xl font-extrabold">Francisco Flores</h1>
+        <h2 class="text-xl md:text-4xl font-bold text-yellow-200">Frontend Developer</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">
+                Transformo tus ideas en interfases interactivas y funcionales
+            </p>
+        </div>
+        <div id="skilss" class="mt-2.5 flex gap-4">
+            <img class="animate-bounce" src="assets/img/html_32dp_F19E39_FILL0_wght400_GRAD0_opsz40.svg" alt="">
+            <img class="animate-bounce" src="assets/img/css_32dp_228BE6_FILL0_wght400_GRAD0_opsz40.svg" alt="">
+            <img class="animate-bounce" src="assets/img/javascript_32dp_FFEC99_FILL0_wght400_GRAD0_opsz40.svg" alt="">
+            
+        </div>
+        
+        <div id="buttons" class="flex gap-4">
+            
+            <a
+            href="#projects"
+            class="inline-block mt-6 px-5 py-3 bg-blue-400 hover:bg-amber-200 transition-all text-black rounded-lg font-semibold"
+            >Ver proyectos</a
+            >
+            <a
+            href="#projects"
+            class="inline-block mt-6 px-5 py-3 bg-blue-100 text-black rounded-lg font-semibold"
+            >CV</a
+            >
+        </div>
+    </div>
       </div>
     </header>
 
-    <main>
+    <main> 
       <section
         id="projects"
         aria-label="Proyectos"
         class="container mx-auto px-6 py-16"
       >
         <h2 class="text-2xl font-bold mb-6">Proyectos</h2>
-        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <li class="bg-gray-100 rounded-lg p-6">
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <li class="border-dotted border-2 rounded-lg p-6">
             <article>
-              <h3 class="text-xl font-semibold">Proyecto 1</h3>
+                <div class="">
+                    <img class="max-w-full w-full h-auto object-cover rounded-md" src="assets/img/proyecto-1.png" alt="imagen del proyecto 1">
+                </div>
+              <h3 class="text-xl font-semibold">Aora Notes app</h3>
               <p class="mt-2 text-sm text-gray-700">
-                Breve descripción del proyecto, tecnologías y enlace.
+               Gestor de tareas con soporte para categorías (Trabajo, Personal, Educación, etc.) y niveles de prioridad. Aprendí a implementar CRUD en JavaScript, optimizar la interacción con el DOM, aplicar persistencia con localStorage y estilizar la aplicación con Tailwind CSS.
               </p>
+              <div id="skill-used">
+                <span class="text-xs font-medium text-orange-400">HTML</span>
+                <span class="text-xs font-medium text-amber-300">JS</span>
+                <span class="text-xs font-medium text-blue-400">React</span>
+                <span class="text-xs font-medium text-blue-600">TailwindCss</span>
+              </div>
               <a
                 href="#"
-                class="mt-3 inline-block text-indigo-600 hover:underline"
+                class="mt-3 inline-block text-indigo-600  hover:bg-amber-200"
                 >Ver proyecto →</a
               >
             </article>
@@ -75,7 +154,7 @@
         </ul>
       </section>
 
-      <section id="about" aria-label="Sobre mí" class="bg-gray-50">
+      <section id="about" aria-label="Sobre mí" class="">
         <div class="container mx-auto px-6 py-16">
           <h2 class="text-2xl font-bold mb-4">Sobre mí</h2>
           <p class="text-gray-700">
@@ -161,7 +240,7 @@
       </section>
     </main>
 
-    <footer class="bg-gray-900 text-white">
+    <footer class="text-white">
       <div class="container mx-auto px-6 py-6 text-center text-sm">
         <p>
           © <span id="year">2025</span> Francisco Flores — Diseñado y
@@ -174,5 +253,39 @@
         </p>
       </div>
     </footer>
+    <script>
+      (function () {
+        const btn = document.getElementById("mobile-menu-button");
+        const menu = document.getElementById("mobile-menu");
+        if (!btn || !menu) return;
+
+        const setHidden = (hidden) => {
+          btn.setAttribute("aria-expanded", String(!hidden));
+          menu.classList.toggle("hidden", hidden);
+          menu.setAttribute("aria-hidden", String(hidden));
+        };
+
+        btn.addEventListener("click", () => {
+          const isHidden = menu.classList.contains("hidden");
+          setHidden(!isHidden);
+        });
+
+        // Cerrar al hacer click en un enlace del menú
+        menu
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", () => setHidden(true)));
+
+        // Cerrar con Escape
+        document.addEventListener("keydown", (e) => {
+          if (
+            e.key === "Escape" &&
+            btn.getAttribute("aria-expanded") === "true"
+          ) {
+            setHidden(true);
+            btn.focus();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
