@@ -6,6 +6,7 @@
     <title>Francisco Flores Frontend Developer || Portafolio</title>
     <link rel="stylesheet" href="styles/output.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body id="body" class="min-h-screen text-white">
     <header id="header" class="text-white">
@@ -64,12 +65,12 @@
       </ul>
     </div>
     <!--texto del header-->
-      <div class="container-head mx-auto px-6 py-7 text-left md:flex md:flex-row-reverse justify-evenly items-center">
-        <div id="Avatar" class=" w-1/2 md:w-1/5 border mask-b-from-90% shadow shadow-amber-100 rounded-full md:border-none md:rounded-none">
+      <div class="container-head mx-auto px-6 py-7 text-left md:flex md:flex-row-reverse justify-evenly items-center" data-aos="fade-up"data-aos-easing="ease-in-out"data-aos-duration="1500">
+        <div id="Avatar" class="  w-1/2 md:w-1/5 border mask-b-from-90% shadow shadow-amber-100 rounded-full md:border-none md:rounded-none">
 
             <picture >
                 <source media="(min-width: 768px)" srcset="assets/img/desktop-avatar.png">
-                <img class="max-w-full w-full h-auto object-cover mask-b-from-90%" src="assets/img/mobile-avatar.png" alt="Avatar de Francisco Flores" loading="lazy" decoding="async">
+                <img class="max-w-full w-full  h-auto object-cover mask-b-from-90%" src="assets/img/mobile-avatar.png" alt="Avatar de Francisco Flores" loading="lazy" decoding="async">
             </picture>
         </div>
 <div id="header-info">
@@ -113,41 +114,70 @@
         aria-label="Proyectos"
         class="container mx-auto px-6 py-16"
       >
-        <h2 class="text-2xl font-bold mb-6">Proyectos</h2>
-        <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <li class="border-dotted border-2 rounded-lg p-6">
-            <article>
-                <div class="">
-                    <img class="max-w-full w-full h-auto object-cover rounded-md" src="assets/img/proyecto-1.png" alt="imagen del proyecto 1">
-                </div>
-              <h3 class="text-xl font-semibold">Aora Notes app</h3>
-              <p class="mt-2 text-sm text-gray-700">
+        <h2 class="text-3xl text-center font-bold mb-6" data-aos="fade-up"> Mis Proyectos</h2>
+        <ul class=" max-w-full gap-8 flex flex-col">
+          <li class=" max-w-5xl mx-auto flex flex-col gap-5 p-4 rounded-md border border-black/10
+               text-white
+              shadow-[0_0_5px_rgba(255,255,255,0.3)]  md:flex-row" data-aos="fade-right" data-aos-duaration="2500" data-aos-easing="ease">
+            
+                <img class="max-w-full w-full h-auto object-cover rounded-xs" src="assets/img/proyecto-1.png" alt="imagen del proyecto 1">
+            
+            <article class=" flex flex-col justify-around">
+              <h3 class="text-2xl font-semibold">Aora Notes app</h3>
+              <p class="mt-2 text-sm text-slate-300 font-medium">
                Gestor de tareas con soporte para categorías (Trabajo, Personal, Educación, etc.) y niveles de prioridad. Aprendí a implementar CRUD en JavaScript, optimizar la interacción con el DOM, aplicar persistencia con localStorage y estilizar la aplicación con Tailwind CSS.
               </p>
-              <div id="skill-used">
+              <div id="skill-used" class="mt-3">
                 <span class="text-xs font-medium text-orange-400">HTML</span>
                 <span class="text-xs font-medium text-amber-300">JS</span>
                 <span class="text-xs font-medium text-blue-400">React</span>
                 <span class="text-xs font-medium text-blue-600">TailwindCss</span>
               </div>
-              <a
+              <ul class="flex gap-3 self-end mt-3">
+
+                <a
                 href="#"
-                class="mt-3 inline-block text-indigo-600  hover:bg-amber-200"
+                class=" inline-block font-medium text-slate-200 w-fit bg-blue-400 py-1 px-4 rounded-xs transition hover:bg-blue-500"
                 >Ver proyecto →</a
-              >
+                >
+                <a
+                href="#"
+                class=" inline-block font-medium text-slate-800 w-fit bg-amber-200 py-1 px-4 rounded-xs transition  hover:bg-amber-300"
+                >Github →</a
+                >
+              </ul>
             </article>
           </li>
-          <li class="bg-gray-100 rounded-lg p-6">
-            <article>
-              <h3 class="text-xl font-semibold">Proyecto 2</h3>
-              <p class="mt-2 text-sm text-gray-700">
-                Breve descripción del proyecto, tecnologías y enlace.
+           <li class=" max-w-5xl mx-auto flex flex-col gap-5 p-4 rounded-md border border-black/10
+               text-white
+              shadow-[0_0_5px_rgba(255,255,255,0.3)]  md:flex-row-reverse" data-aos="fade-left" data-aos-duaration="2500" data-aos-easing="ease">
+            
+                <img class="max-w-full w-full h-auto object-cover rounded-xs" src="assets/img/proyecto-1.png" alt="imagen del proyecto 1">
+            
+            <article class=" flex flex-col justify-around">
+              <h3 class="text-2xl font-semibold">Aora Notes app</h3>
+              <p class="mt-2 text-sm text-slate-300 font-medium">
+               Gestor de tareas con soporte para categorías (Trabajo, Personal, Educación, etc.) y niveles de prioridad. Aprendí a implementar CRUD en JavaScript, optimizar la interacción con el DOM, aplicar persistencia con localStorage y estilizar la aplicación con Tailwind CSS.
               </p>
-              <a
+              <div id="skill-used" class="mt-3">
+                <span class="text-xs font-medium text-orange-400">HTML</span>
+                <span class="text-xs font-medium text-amber-300">JS</span>
+                <span class="text-xs font-medium text-blue-400">React</span>
+                <span class="text-xs font-medium text-blue-600">TailwindCss</span>
+              </div>
+              <ul class="flex gap-3 self-start mt-3">
+
+                <a
                 href="#"
-                class="mt-3 inline-block text-indigo-600 hover:underline"
+                class=" inline-block font-medium text-slate-200 w-fit bg-blue-400 py-1 px-4 rounded-xs transition hover:bg-blue-500"
                 >Ver proyecto →</a
-              >
+                >
+                <a
+                href="#"
+                class=" inline-block font-medium text-slate-800 w-fit bg-amber-200 py-1 px-4 rounded-xs transition  hover:bg-amber-300"
+                >Github →</a
+                >
+              </ul>
             </article>
           </li>
           <!-- Añade más tarjetas de proyecto según necesites -->
@@ -253,6 +283,7 @@
         </p>
       </div>
     </footer>
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       (function () {
         const btn = document.getElementById("mobile-menu-button");
@@ -286,6 +317,8 @@
           }
         });
       })();
+       AOS.init();
     </script>
+   
   </body>
 </html>
