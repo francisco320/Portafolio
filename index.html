@@ -184,16 +184,28 @@
         </ul>
       </section>
 
-      <section id="about" aria-label="Sobre mí" class="">
-        <div class="container mx-auto px-6 py-16">
-          <h2 class="text-2xl font-bold mb-4">Sobre mí</h2>
-          <p class="text-gray-700">
-            Soy frontend developer con interés en accesibilidad, rendimiento y
-            diseño basado en componentes. Me gusta trabajar con HTML, CSS
-            (Tailwind) y JavaScript.
-          </p>
-        </div>
-      </section>
+      <section id="about" aria-label="Sobre mí" class="  justify-around py-16 md:flex md:items-center md:gap-2 p-4" data-aos="flip-left"
+     data-aos-easing="ease-out-cubic"
+     data-aos-duration="2000">
+
+  <div class=" w-1/2 md:w-1/6 relative">
+    
+    <picture >
+                <source media="(min-width: 768px)" srcset="assets/img/mobile-avatar.png">
+                <img class="max-w-full w-full  h-auto object-cover mask-b-from-80%" src="assets/img/desktop-avatar.png" alt="Avatar de Francisco Flores" loading="lazy" decoding="async">
+            </picture>
+  </div>
+
+
+    <div class="w-full md:w-1/2">
+      <h2 class="text-3xl font-bold mb-4 text-white">Sobre mí</h2>
+      <p class="text-slate-300 leading-relaxed text-md">
+        Graduado en <span class="text-white font-semibold">Ingeniería Informática</span> y especializado en desarrollo moderno a través de un aprendizaje continuo e intensivo. En los últimos dos años, he cerrado la brecha entre la teoría académica y la práctica actual, construyendo aplicaciones con vanillaJS, HTML y CSS.
+      </p>
+    </div>
+
+  </div>
+</section>
 
       <section
         id="contact"
@@ -206,10 +218,13 @@
         </p>
 
         <form
+          id="contact-form"
           action="#"
           method="POST"
+          data-endpoint="https://formspree.io/f/xwvkdqpn"
           class="mt-6 max-w-xl grid gap-4"
           aria-label="Formulario de contacto"
+          novalidate
         >
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700"
@@ -260,12 +275,15 @@
             <p class="text-sm text-gray-500">
               O envía un correo a
               <a
-                href="mailto:tu@email.com"
+                href="mailto:Franciscojoseflores320@gmail.com"
                 class="text-indigo-600 hover:underline"
-                >tu@email.com</a
+                >Franciscojoseflores320@gmail.com</a
               >
             </p>
           </div>
+
+          <div id="form-status" role="status" aria-live="polite" class="hidden mt-2 text-sm"></div>
+
         </form>
       </section>
     </main>
@@ -319,6 +337,70 @@
       })();
        AOS.init();
     </script>
-   
+
+    <script>
+    (function () {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const status = document.getElementById('form-status');
+      const endpoint = form.dataset.endpoint || '';
+      const showMessage = (msg, isError = false) => {
+        status.textContent = msg;
+        status.classList.remove('hidden','text-green-500','text-red-500');
+        status.classList.add(isError ? 'text-red-500' : 'text-green-500');
+      };
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const formData = new FormData(form);
+        const name = (formData.get('name') || '').trim();
+        const email = (formData.get('email') || '').trim();
+        const message = (formData.get('message') || '').trim();
+
+        if (!name || !email || !message) {
+          showMessage('Por favor, completa todos los campos.', true);
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage('Por favor, introduce un correo válido.', true);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+        showMessage('Enviando...');
+
+        if (endpoint && !endpoint.includes('your-id')) {
+          try {
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({ name, email, message })
+            });
+            if (res.ok) {
+              showMessage('¡Mensaje enviado! Gracias por contactarme.');
+              form.reset();
+            } else {
+              const data = await res.json().catch(() => ({}));
+              const err = data.error || data.message || 'Error al enviar';
+              showMessage('Error: ' + err, true);
+            }
+          } catch (err) {
+            showMessage('Error de red. Abriendo cliente de correo como alternativa.', true);
+            window.location.href = `mailto:Franciscojoseflores320@gmail.com?subject=${encodeURIComponent('Contacto desde web')}&body=${encodeURIComponent(`${name} (${email})\n\n${message}`)}`;
+          }
+        } else {
+          showMessage('No hay endpoint configurado; abriendo cliente de correo...', false);
+          window.location.href = `mailto:Franciscojoseflores320@gmail.com?subject=${encodeURIComponent('Contacto desde web')}&body=${encodeURIComponent(`${name} (${email})\n\n${message}`)}`;
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+      });
+    })();
+    </script>
+
   </body>
 </html>
