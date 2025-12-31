@@ -9,6 +9,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body id="body" class="min-h-screen text-white">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-3 py-2 rounded">Saltar al contenido</a>
     <header id="header" class="text-white">
       <div
         class="container mx-auto px-2 py-6 flex items-center justify-between"
@@ -79,7 +80,7 @@
         
         <span class="text-gray-300"> Hola soy,</span>    
         <h1 class="text-3xl md:text-5xl font-extrabold">Francisco Flores</h1>
-        <h2 class="text-xl md:text-4xl font-bold text-yellow-200">Frontend Developer</h1>
+        <h2 class="text-xl md:text-4xl font-bold text-yellow-200">Frontend Developer</h2>
             <p class="mt-4 text-lg md:text-xl text-gray-300">
                 Transformo tus ideas en interfases interactivas y funcionales
             </p>
@@ -108,7 +109,7 @@
       </div>
     </header>
 
-    <main> 
+    <main id="main"> 
       <section
         id="projects"
         aria-label="Proyectos"
@@ -240,10 +241,12 @@
               name="name"
               type="text"
               required
+              aria-describedby="name-error"
               class="mt-1 block w-full p-4 rounded-md border border-black/10
                text-white
               shadow-[0_0_5px_rgba(255,255,255,0.3)]  md:flex-row px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
+            <p id="name-error" class="hidden mt-1 text-sm text-red-500" aria-live="assertive"></p>
           </div>
 
           <div>
@@ -255,10 +258,12 @@
               name="email"
               type="email"
               required
+              aria-describedby="email-error"
               class="mt-1 block w-full p-4 rounded-md border border-black/10
                text-white
               shadow-[0_0_5px_rgba(255,255,255,0.3)]  md:flex-row px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
+            <p id="email-error" class="hidden mt-1 text-sm text-red-500" aria-live="assertive"></p>
           </div>
           
           <div>
@@ -270,10 +275,12 @@
               name="message"
               rows="5"
               required
+              aria-describedby="message-error"
               class="mt-1 block w-full p-4 rounded-md border border-black/10
                text-white
               shadow-[0_0_5px_rgba(255,255,255,0.3)]  md:flex-row px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               ></textarea>
+            <p id="message-error" class="hidden mt-1 text-sm text-red-500" aria-live="assertive"></p>
             </div>
             
             <div class="flex items-center gap-4">
@@ -333,6 +340,11 @@
         btn.addEventListener("click", () => {
           const isHidden = menu.classList.contains("hidden");
           setHidden(!isHidden);
+          // Si estamos abriendo el menú, mover foco al primer enlace
+          if (isHidden) {
+            const firstLink = menu.querySelector("a");
+            if (firstLink) firstLink.focus();
+          }
         });
 
         // Cerrar al hacer click en un enlace del menú
@@ -365,22 +377,46 @@
         status.classList.remove('hidden','text-green-500','text-red-500');
         status.classList.add(isError ? 'text-red-500' : 'text-green-500');
       };
+
+      const setFieldError = (el, msg) => {
+        const errEl = document.getElementById(el.id + '-error');
+        if (msg) {
+          el.setAttribute('aria-invalid', 'true');
+          el.setAttribute('aria-describedby', el.id + '-error');
+          if (errEl) { errEl.textContent = msg; errEl.classList.remove('hidden'); }
+        } else {
+          el.removeAttribute('aria-invalid');
+          el.removeAttribute('aria-describedby');
+          if (errEl) { errEl.textContent = ''; errEl.classList.add('hidden'); }
+        }
+      };
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = form.querySelector('button[type="submit"]');
+        const nameInput = form.querySelector('#name');
+        const emailInput = form.querySelector('#email');
+        const messageInput = form.querySelector('#message');
         const formData = new FormData(form);
         const name = (formData.get('name') || '').trim();
         const email = (formData.get('email') || '').trim();
         const message = (formData.get('message') || '').trim();
 
-        if (!name || !email || !message) {
-          showMessage('Por favor, completa todos los campos.', true);
-          return;
-        }
+        // limpiar errores previos
+        setFieldError(nameInput, '');
+        setFieldError(emailInput, '');
+        setFieldError(messageInput, '');
+
+        let hasError = false;
+        if (!name) { setFieldError(nameInput, 'Por favor, introduce tu nombre.'); hasError = true; }
+        if (!email) { setFieldError(emailInput, 'Por favor, introduce tu correo.'); hasError = true; }
+        if (!message) { setFieldError(messageInput, 'Por favor, escribe un mensaje.'); hasError = true; }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          showMessage('Por favor, introduce un correo válido.', true);
+        if (email && !emailRegex.test(email)) { setFieldError(emailInput, 'Por favor, introduce un correo válido.'); hasError = true; }
+
+        if (hasError) {
+          showMessage('Por favor, corrige los errores en el formulario.', true);
           return;
         }
 
