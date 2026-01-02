@@ -64,6 +64,8 @@ El formulario de contacto está configurado usando Formspree (revisar `index.htm
 
 Si quieres contribuir, abre un issue o PR. Cualquier mejora en contenido, accesibilidad o rendimiento es bienvenida.
 
+https://roadmap.sh/projects/portfolio-website
+
 ## 📄 Licencia
 
 MIT — modifica esto según prefieras.
