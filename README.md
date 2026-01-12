@@ -66,10 +66,5 @@ Si quieres contribuir, abre un issue o PR. Cualquier mejora en contenido, accesi
 
 https://roadmap.sh/projects/portfolio-website
 
-## 📄 Licencia
-
-MIT — modifica esto según prefieras.
-
----
 
 ¡Gracias por visitar mi portafolio! 💡
